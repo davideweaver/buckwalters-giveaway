@@ -1,0 +1,27 @@
+html,
+body,
+#root {
+  height: 100%;
+}
+
+h1 {
+  font-size: 50px;
+}
+
+.form-control {
+  font-size: 20px;
+  border: 1px solid #999;
+}
+
+.form-label {
+  font-size: 18px;
+}
+
+.btn-primary {
+  font-size: 20px;
+}
+
+.btn-Light {
+  font-size: 20px;
+  margin-left: 10px;
+}
