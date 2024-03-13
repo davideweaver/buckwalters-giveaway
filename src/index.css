@@ -25,3 +25,10 @@ h1 {
   font-size: 20px;
   margin-left: 10px;
 }
+
+input[type="checkbox"] {
+  height: 30px;
+  width: 30px;
+  border-color: #333;
+  border-width: 1px;
+}

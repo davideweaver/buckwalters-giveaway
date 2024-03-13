@@ -9,6 +9,7 @@ const Root = () => {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
+  const [subscribed, setSubscribed] = useState(true);
   const [phone, setPhone] = useState("");
   const [status, setStatus] = useState<string | null>(null);
 
@@ -21,6 +22,15 @@ const Root = () => {
       return () => clearTimeout(timerFunc);
     }
   }, [status]);
+
+  const handleEnter = (event: any) => {
+    if (event.keyCode === 13) {
+      const form = event.target.form;
+      const index = Array.prototype.indexOf.call(form, event.target);
+      form.elements[index + 1].focus();
+      event.preventDefault();
+    }
+  };
 
   const handleFirstNameChange = (
     event: React.ChangeEvent<HTMLInputElement>
@@ -77,6 +87,7 @@ const Root = () => {
     setError(null);
     try {
       const record = {
+        date: new Date(),
         firstName,
         lastName,
         email,
@@ -111,7 +122,7 @@ const Root = () => {
             <img src="/logo.jpeg" style={{ width: 350 }}></img>
           </div>
         </Col>
-        <Col sm="8" style={{ padding: "60px 40px" }}>
+        <Col sm="8" style={{ padding: "20px 40px" }}>
           <div
             style={{
               height: "100%",
@@ -147,6 +158,7 @@ const Root = () => {
                           onChange={handleFirstNameChange}
                           style={{ width: 300 }}
                           autoCapitalize="words"
+                          onKeyDown={handleEnter}
                         />
                       </Col>
                     </Form.Group>
@@ -167,6 +179,7 @@ const Root = () => {
                           onChange={handleLastNameChange}
                           style={{ width: 300 }}
                           autoCapitalize="words"
+                          onKeyDown={handleEnter}
                         />
                       </Col>
                     </Form.Group>
@@ -182,6 +195,7 @@ const Root = () => {
                           value={email}
                           onChange={handleEmailChange}
                           style={{ width: 400 }}
+                          onKeyDown={handleEnter}
                         />
                       </Col>
                     </Form.Group>
@@ -197,12 +211,30 @@ const Root = () => {
                           value={phone}
                           onChange={handlePhoneChange}
                           style={{ width: 300 }}
+                          onKeyDown={handleEnter}
                         />
                       </Col>
                     </Form.Group>
+                    <div
+                      style={{
+                        display: "flex",
+                        alignContent: "center",
+                        paddingLeft: 120,
+                      }}
+                    >
+                      <Form.Check
+                        checked={subscribed}
+                        onClick={() => setSubscribed(!subscribed)}
+                        type="checkbox"
+                        id="subscribe"
+                      />
+                      <span style={{ padding: "6px 14px" }}>
+                        Keep me updated on availability of Sausages and Salamis
+                      </span>
+                    </div>
                   </>
                 )}
-                <div style={{ height: 30 }}></div>
+                <div style={{ height: 40 }}></div>
                 {status && <Alert variant={"success"}>{status}</Alert>}
                 {!status && (
                   <>
