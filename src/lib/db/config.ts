@@ -11,6 +11,8 @@ const config = {
         { name: "lastName", keypath: "lastName", options: { unique: false } },
         { name: "email", keypath: "email", options: { unique: true } },
         { name: "phone", keypath: "phone", options: { unique: true } },
+        { name: "subscribed", keypath: "subscribed", options: { unique: false } },
+        { name: "selected", keypath: "selected", options: { unique: false } },
       ],
     },
   ],

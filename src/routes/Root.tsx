@@ -55,6 +55,7 @@ const Root = () => {
     setLastName("");
     setEmail("");
     setPhone("");
+    setSubscribed(true);
     setError(null);
     setStatus(null);
   };
@@ -87,17 +88,19 @@ const Root = () => {
     setError(null);
     try {
       const record = {
-        date: new Date(),
+        date: new Date().toISOString(),
         firstName,
         lastName,
         email,
         phone,
+        subscribed: subscribed ? "YES" : "NO",
       };
       await add(record);
       setFirstName("");
       setLastName("");
       setEmail("");
       setPhone("");
+      setSubscribed(true);
       setStatus("Registration successful. Thank you!");
     } catch (err) {
       console.error(err);
@@ -223,7 +226,7 @@ const Root = () => {
                       }}
                     >
                       <Form.Check
-                        checked={subscribed}
+                        defaultChecked={subscribed}
                         onClick={() => setSubscribed(!subscribed)}
                         type="checkbox"
                         id="subscribe"

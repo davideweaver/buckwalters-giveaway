@@ -8,6 +8,7 @@ import Root from "./routes/Root";
 import { initDB } from "react-indexed-db-hook";
 import config from "./lib/db/config";
 import Admin from "./routes/Admin";
+import Choose from "./routes/Choose";
 
 initDB(config);
 
@@ -19,6 +20,10 @@ const router = createBrowserRouter([
   {
     path: "/admin",
     element: <Admin />,
+  },
+  {
+    path: "/choose",
+    element: <Choose />,
   },
 ]);
 
