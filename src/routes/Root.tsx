@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { useIndexedDB } from "react-indexed-db-hook";
-import extractErrorMessage from "../lib/utils/extractErrorMessage";
 import { Alert, Button, Col, Container, Form, Row } from "react-bootstrap";
+import { useIndexedDB } from "react-indexed-db-hook";
+
+import extractErrorMessage from "../lib/utils/extractErrorMessage";
 
 const Root = () => {
   const { add, getByIndex } = useIndexedDB("registrations");

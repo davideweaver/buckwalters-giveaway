@@ -14,7 +14,7 @@ const Admin = () => {
 
   const refresh = () => {
     setVersion(version + 1);
-  }
+  };
 
   const handleDelete = async (personId: string) => {
     await deleteRecord(personId);
@@ -24,10 +24,17 @@ const Admin = () => {
   const handleDeleteAll = async () => {
     await clear();
     refresh();
-  }
+  };
+
+  const cleanPersons = persons.filter((person) => {
+    if (!person.date || person.date.indexOf("T") < 0) {
+      return false;
+    }
+    return true;
+  });
 
   return (
-    <div style={{padding: 20}}>
+    <div style={{ padding: 20 }}>
       <a href="/">Home</a> | <a href="/choose">Choose</a>
       <table cellPadding={10}>
         <thead>
@@ -42,20 +49,25 @@ const Admin = () => {
           </tr>
         </thead>
         <tbody>
-        {persons.map((person) => (
-          <tr key={person.id}>
-            <td>{person.date}</td>
-            <td>{person.firstName}</td>
-            <td>{person.lastName}</td>
-            <td>{person.email}</td>
-            <td>{person.phone}</td>
-            <td>{person.subscribed}</td>
-            <td><button onClick={() => handleDelete(person.id)}>Delete</button></td>
-          </tr>
-        ))}
+          {cleanPersons.map((person) => (
+            <tr key={person.id}>
+              <td>{person.date}</td>
+              <td>{person.firstName}</td>
+              <td>{person.lastName}</td>
+              <td>{person.email}</td>
+              <td>{person.phone}</td>
+              <td>{person.subscribed}</td>
+              <td>
+                <button onClick={() => handleDelete(person.id)}>Delete</button>
+              </td>
+            </tr>
+          ))}
         </tbody>
       </table>
       <button onClick={handleDeleteAll}>Delete All</button>
+      <br />
+      <br />
+      Version: 5
     </div>
   );
 };
