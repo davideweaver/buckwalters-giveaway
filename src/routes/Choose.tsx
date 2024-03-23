@@ -17,7 +17,10 @@ const Choose = () => {
   };
 
   const groups = persons.reduce((groups, person) => {
-    const date = person.date.split("T")[0];
+    let date = "unknown-date";
+    if (person.date && person.date.indexOf("T") > -1) {
+      date = person.date.split("T")[0];
+    }
     if (!groups[date]) {
       groups[date] = [];
     }
