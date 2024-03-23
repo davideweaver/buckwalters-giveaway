@@ -27,7 +27,11 @@ const Admin = () => {
   };
 
   const cleanPersons = persons.filter((person) => {
-    if (!person.date || person.date.indexOf("T") < 0) {
+    if (
+      !person.date ||
+      typeof person.date !== "string" ||
+      person.date.indexOf("T") < 0
+    ) {
       return false;
     }
     return true;
